@@ -3,14 +3,16 @@
  
 User Function eMata140()
  
-Local nOpc := 3
+    Local nOpc      := 3
+    Local lSimula	:= .T.
+    Local nTelaAuto := 1
  
     Private aCabec      := {}
     Private aItens      := {}
     Private aLinha      := {}
     Private lMsErroAuto := .F.
  
-    PREPARE ENVIRONMENT EMPRESA "99" FILIAL "01" MODULO "COM" TABLES "SF1","SD1","SA1","SA2","SB1","SB2","SF4"
+    PREPARE ENVIRONMENT EMPRESA "03" FILIAL "01" MODULO "COM" TABLES "SF1","SD1","SA1","SA2","SB1","SB2","SF4"
      
     aAdd(aCabec,{'F1_TIPO','N',NIL})
     aAdd(aCabec,{'F1_FORMUL','N',NIL})
@@ -32,7 +34,7 @@ Local nOpc := 3
       
     aAdd(aLinha,aItens)
       
-    MSExecAuto({|x,y,z,a,b| MATA140(x,y,z,a,b)}, aCabec, aLinha, nOpc,,)
+    MSExecAuto({|x,y,z,a,b| MATA140(x,y,z,a,b)}, aCabec, aLinha, nOpc,lSimula,nTelaAuto)
       
     If lMsErroAuto
         mostraerro()
